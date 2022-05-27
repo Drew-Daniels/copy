@@ -36,11 +36,31 @@ describe('Data Type Acceptance', () => {
 })
 
 describe('get()', () => {
-    test.todo('Returns a promise');
-    test.todo('string => SUCCESS');
-    test.todo('integer => SUCCESS');
-    test.todo('object => SUCCESS');
-    test.todo('array => SUCCESS');
+    const STRING = 'spam';
+    const INTEGER = 1;
+    const OBJECT = {};
+    const ARRAY = [];
+    const BOOLEAN = true;
+    it('returns the original STRING as promise', async () => {
+        const testCopier = new Copier(STRING);
+        const res = await testCopier.get();
+        expect(res).toBe(STRING);
+    });
+    it('returns the original INTEGER as promise', async () => {
+        const testCopier = new Copier(INTEGER);
+        const res = await testCopier.get();
+        expect(res).toBe(INTEGER);
+    });
+    it('returns the original OBJECT as a promise', async () => {
+        const testCopier = new Copier(OBJECT);
+        const res = await testCopier.get();
+        expect(res).toBe(OBJECT);
+    });
+    it('returns the original ARRAY as a promise', async () => {
+        const testCopier = new Copier(ARRAY);
+        const res = await testCopier.get();
+        expect(res).toBe(ARRAY);
+    });
 });
 
 describe('delete()', () => {

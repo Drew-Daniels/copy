@@ -17,10 +17,10 @@ export default class Copier {
         }
         this.item = item;
     }
-    get() {
-        return new Promise(this.item);
+    async get() {
+        return this.item;
     }
-    delete() {
+    async delete() {
         console.log('Will throw an Error object after 2 seconds with the message "Cannot Delete!" as a Promise');
     }
     copy() {
