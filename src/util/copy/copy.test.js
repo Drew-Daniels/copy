@@ -40,7 +40,6 @@ describe('get()', () => {
     const INTEGER = 1;
     const OBJECT = {};
     const ARRAY = [];
-    const BOOLEAN = true;
     it('returns the original STRING as promise', async () => {
         const testCopier = new Copier(STRING);
         const res = await testCopier.get();
@@ -64,9 +63,52 @@ describe('get()', () => {
 });
 
 describe('delete()', () => {
-
+    const testCopier = new Copier(0);
+    it.todo('returns an Error object with the correct error message');
+    it.todo('returns an Error message after 2 seconds');
 });
 
 describe('copy()', () => {
-
+    const STRING = 'spam';
+    const INTEGER = 1;
+    const EMPTY_OBJECT = {};
+    const FILLED_OBJECT = { a: 'b', c: { d: 'e', f: ['g', { h: 'i' }] } };
+    const EMPTY_ARRAY = [];
+    const FILLED_ARRAY = [[0, 1], {"spam": 5}];
+    it('returns string primitive', () => {
+        const testCopier = new Copier(STRING);
+        const copyResult = testCopier.copy();
+        const result = Object.is(copyResult, STRING);
+        expect(result).toBe(true);
+    });
+    it('returns integer primitive', () => {
+        const testCopier = new Copier(INTEGER);
+        const copyResult = testCopier.copy();
+        const result = Object.is(copyResult, INTEGER);
+        expect(result).toBe(true);
+    });
+    it('returns a new copy of an empty object', () => {
+        const testCopier = new Copier(EMPTY_OBJECT);
+        const copyResult = testCopier.copy();
+        const result = Object.is(copyResult, EMPTY_OBJECT);
+        expect(result).toBe(false);
+    });
+    it('returns a deep copy of an object with multiple levels', () => {
+        const testCopier = new Copier(FILLED_OBJECT);
+        const copyResult = testCopier.copy();
+        const result = Object.is(copyResult, FILLED_OBJECT);
+        expect(result).toBe(false);
+    });
+    it('returns a new copy of an empty array', () => {
+        const testCopier = new Copier(EMPTY_ARRAY);
+        const copyResult = testCopier.copy();
+        const result = Object.is(copyResult, EMPTY_ARRAY);
+        expect(result).toBe(false);
+    });
+    it('returns a new copy of a non-empty array', () => {
+        const testCopier = new Copier(FILLED_ARRAY);
+        const copyResult = testCopier.copy();
+        const result = Object.is(copyResult, FILLED_ARRAY);
+        expect(result).toBe(false);
+    });
 });

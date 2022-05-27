@@ -1,6 +1,7 @@
 import {
     MAX_ARGS_EXCEEDED_ERR_MSG, 
-    INVALID_DATA_TYPE_ERR_MSG
+    INVALID_DATA_TYPE_ERR_MSG,
+    DELETE_ERR_MSG
 } from './constants';
 
 export default class Copier {
@@ -21,9 +22,11 @@ export default class Copier {
         return this.item;
     }
     async delete() {
-        console.log('Will throw an Error object after 2 seconds with the message "Cannot Delete!" as a Promise');
+        setTimeout(() => {
+            return new Error(DELETE_ERR_MSG);
+        }, 2000);
     }
     copy() {
-        console.log('Will return a deep copy of the provided item');
+        return JSON.parse(JSON.stringify(this.item));
     }
 }
