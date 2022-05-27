@@ -1,9 +1,12 @@
+import {MAX_ARGS_EXCEEDED_ERR_MSG} from './constants';
+
 export default class Copier {
     constructor(item) {
+        if (arguments.length > 1) { throw new Error(MAX_ARGS_EXCEEDED_ERR_MSG)}
         this.item = item;
     }
     get() {
-        console.log('Will return the original item after 1 second as a Promise');
+        return new Promise(this.item);
     }
     delete() {
         console.log('Will throw an Error object after 2 seconds with the message "Cannot Delete!" as a Promise');
